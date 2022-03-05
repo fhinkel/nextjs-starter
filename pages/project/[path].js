@@ -81,6 +81,12 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const project = projects.find(proj => proj.slug === params.path);
+  const ghPath = project.path;
+  const res = await fetch(`https://api.github.com/repos/${ghPath}`);
+  const data = await res.json();
+  project.open_issues = data.open_issues;
+  project.subscribers_count = data.subscribers_count;
+  project.stargazers_count = data.stargazers_count;
   return { props: { project } };
 }
 
