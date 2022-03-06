@@ -15,5 +15,7 @@ test('should have stats', async ({ page }) => {
     // Start from the index page (the baseURL is set via the webServer in the playwright.config.ts)
     await page.goto('http://localhost:3000/project/facebook-react/')
     // The new page should contain stats
-    await expect(page.locator('.stats-detail')).toContainText('watchers')
+    await expect(page.locator('.stats-details:first-of-type div p')).toContainText('183727')
+
+   
   })
