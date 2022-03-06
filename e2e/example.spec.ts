@@ -16,5 +16,5 @@ test('should have stats', async ({ page }) => {
     await page.goto('/project/facebook-react/')
     // The new page should contain stats, there should be more than 100k starts for react
     const numberOfStars = await page.innerText('.stats-details:first-of-type div p')
-    expect(Number(numberOfStars)).toBeGreaterThan(1000000);
+    expect(Number(numberOfStars)).toBeGreaterThan(100000);
 })
