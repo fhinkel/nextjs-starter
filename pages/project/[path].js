@@ -94,9 +94,9 @@ export async function getStaticProps({ params }) {
   const ghPath = project.path;
   const res = await fetch(`https://api.github.com/repos/${ghPath}`);
   const data = await res.json();
-  project.open_issues = data.open_issues;
-  project.subscribers_count = data.subscribers_count;
-  project.stargazers_count = data.stargazers_count;
+  project.open_issues = data.open_issues || 0;
+  project.subscribers_count = data.subscribers_count || 0;
+  project.stargazers_count = data.stargazers_count || 0;
   return { props: { project } };
 }
 
