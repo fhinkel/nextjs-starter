@@ -6,10 +6,6 @@ import {
   projectIcons
 } from '../../components/Icons';
 import useSWR from 'swr';
-
-import React, { useState, useEffect } from 'react';
-
-
 import { projects } from '../../utils/projectsData';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
