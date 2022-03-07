@@ -5,14 +5,24 @@ import {
   GithubIcon,
   projectIcons
 } from '../../components/Icons';
+import useSWR from 'swr';
+
 import { projects } from '../../utils/projectsData';
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 function Project({ project }) {
   const Icon = projectIcons[project.id]
+  
+  const { data, error } = useSWR('/api/message', fetcher);
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
   return (
     <div className="project">
       <aside>
-        <h3>You can deploy...</h3>
+        <h3>{data}</h3>
         <ul>
           {projects.map((project) => {
             return (
