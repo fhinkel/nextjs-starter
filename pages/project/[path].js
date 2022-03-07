@@ -14,13 +14,13 @@ function Project({ project }) {
   const Icon = projectIcons[project.id];
 
   const { data, error } = useSWR('/api/message', fetcher);
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+  //if (error) return <div>Failed to load</div>
+  // if (!data) return <div>Loading...</div>
 
   return (
     <div className="project">
       <aside>
-        <h3>{data.text}</h3>
+        <h3>{data? data.text : "Hi"}</h3>
         <ul>
           {projects.map((project) => {
             return (
