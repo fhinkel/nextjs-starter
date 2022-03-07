@@ -16,25 +16,15 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 function Project({ project }) {
   const Icon = projectIcons[project.id];
-  // const [data, setData] = useState('');
 
-  // useEffect(() => {
-  //   (async function () {
-  //     const { title } = await( await fetch(`https://jsonplaceholder.typicode.com/todos/1`)).json();
-  //     setData(title);
-  //   })();
-  // });
-
-  
-  const { data, error } = useSWR('https://jsonplaceholder.typicode.com/todos/1', fetcher);
-
+  const { data, error } = useSWR('http://localhost:7071/api/message', fetcher);
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 
   return (
     <div className="project">
       <aside>
-        <h3>{data.title}</h3>
+        <h3>{data.text}</h3>
         <ul>
           {projects.map((project) => {
             return (
