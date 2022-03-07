@@ -13,7 +13,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 function Project({ project }) {
   const Icon = projectIcons[project.id];
 
-  const { data, error } = useSWR('http://localhost:7071/api/message', fetcher);
+  const { data, error } = useSWR('/api/message', fetcher);
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 
