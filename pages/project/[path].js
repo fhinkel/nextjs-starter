@@ -5,14 +5,22 @@ import {
   GithubIcon,
   projectIcons
 } from '../../components/Icons';
+import useSWR from 'swr';
 import { projects } from '../../utils/projectsData';
 
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
+
 function Project({ project }) {
-  const Icon = projectIcons[project.id]
+  const Icon = projectIcons[project.id];
+
+  const { data, error } = useSWR('/api/message', fetcher);
+  //if (error) return <div>Failed to load</div>
+  // if (!data) return <div>Loading...</div>
+
   return (
     <div className="project">
       <aside>
-        <h3>You can deploy...</h3>
+        <h3>{data? data.text : "Hi"}</h3>
         <ul>
           {projects.map((project) => {
             return (
@@ -84,9 +92,9 @@ export async function getStaticProps({ params }) {
   const ghPath = project.path;
   const res = await fetch(`https://api.github.com/repos/${ghPath}`);
   const data = await res.json();
-  project.open_issues = data.open_issues;
-  project.subscribers_count = data.subscribers_count;
-  project.stargazers_count = data.stargazers_count;
+  project.open_issues = data.open_issues || 0;
+  project.subscribers_count = data.subscribers_count || 0;
+  project.stargazers_count = data.stargazers_count || 0;
   return { props: { project } };
 }
 
