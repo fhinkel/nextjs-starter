@@ -1,4 +1,4 @@
-![E2E tests](https://github.com/fhinkel/nextjs-starter/actions/workflows/playwright.js.yml/badge.svg)
+[![E2E tests](https://github.com/fhinkel/nextjs-starter/actions/workflows/playwright.js.yml/badge.svg)](/actions?query=main)
 
 # Next.js starter
 
