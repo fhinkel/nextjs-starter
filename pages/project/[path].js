@@ -5,6 +5,7 @@ import {
   GithubIcon,
   projectIcons
 } from '../../components/Icons';
+import Link from 'next/link'
 import useSWR from 'swr';
 import { projects } from '../../utils/projectsData';
 
@@ -31,7 +32,9 @@ function Project({ project }) {
           })}
 
           <li>
-            <a href="/">Home</a>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
           </li>
         </ul>
       </aside>
@@ -66,7 +69,6 @@ function Project({ project }) {
             <a
               className="button-github"
               href={project.html_url}
-              target="_blank"
             >
               <GithubIcon w={24} h={24} />
               Learn more...
