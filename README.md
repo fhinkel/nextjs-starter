@@ -10,8 +10,6 @@ To run locally, open the development server with the following command:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Next, open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
@@ -55,7 +53,7 @@ module.exports = {
 ```
 ### Build scripts
 
-The npm `build` script runs commands to not only build the application, but also generate all the static files to the _out_ folder.
+The npm `build` script runs commands to not only build the application, but also generate all the static files to the `out/` folder.
 
 ```json
 "scripts": {
