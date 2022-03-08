@@ -3,13 +3,13 @@ import {
   WatchIcon,
   BugIcon,
   GithubIcon,
-  projectIcons
+  projectIcons,
 } from '../../components/Icons';
-import Link from 'next/link'
+import Link from 'next/link';
 import useSWR from 'swr';
 import { projects } from '../../utils/projectsData';
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 function Project({ project }) {
   const Icon = projectIcons[project.id];
@@ -21,7 +21,7 @@ function Project({ project }) {
   return (
     <div className="project">
       <aside>
-        <h3>{data? data.text : "Hi"}</h3>
+        <h3>{data ? data.text : 'Hi'}</h3>
         <ul>
           {projects.map((project) => {
             return (
@@ -66,10 +66,7 @@ function Project({ project }) {
           </div>
           <p className="description">{project.description}</p>
           <div className="cta">
-            <a
-              className="button-github"
-              href={project.html_url}
-            >
+            <a className="button-github" href={project.html_url}>
               <GithubIcon w={24} h={24} />
               Learn more...
             </a>
@@ -81,17 +78,15 @@ function Project({ project }) {
 }
 
 export async function getStaticPaths() {
-
-    const paths = projects.map((project) => ({
-    params: { path: 
-    project.slug },
-  }))
+  const paths = projects.map((project) => ({
+    params: { path: project.slug },
+  }));
 
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-  const project = projects.find(proj => proj.slug === params.path);
+  const project = projects.find((proj) => proj.slug === params.path);
   const ghPath = project.path;
   const res = await fetch(`https://api.github.com/repos/${ghPath}`);
   const data = await res.json();
