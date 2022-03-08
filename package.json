@@ -22,6 +22,7 @@
     "azure-functions-core-tools": "^3.0.3904",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "^8.5.0",
     "serve": "^13.0.2"
   }
 }

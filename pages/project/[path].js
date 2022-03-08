@@ -82,8 +82,9 @@ function Project({ project }) {
 
 export async function getStaticPaths() {
 
-  const paths = projects.map((project) => ({
-    params: { path: project.slug },
+    const paths = projects.map((project) => ({
+    params: { path: 
+    project.slug },
   }))
 
   return { paths, fallback: false };
